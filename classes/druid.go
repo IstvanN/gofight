@@ -1,8 +1,6 @@
 package classes
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type druid struct {
 	name                      string
