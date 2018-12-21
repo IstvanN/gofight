@@ -20,6 +20,10 @@ func CreateRogue(name string) *rogue {
 	return r
 }
 
+func (r rogue) GetName() string {
+	return r.name
+}
+
 func (r *rogue) Act(f Fighter) {
 	if Rolld(2) == 1 {
 		r.Backstab(f)

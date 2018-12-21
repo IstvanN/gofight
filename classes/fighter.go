@@ -7,6 +7,7 @@ import (
 
 // Fighter is the main interface of the application which all classes should implement
 type Fighter interface {
+	GetName() string
 	Act(Fighter)
 	Suffer(dmg int)
 	IsDead() bool
