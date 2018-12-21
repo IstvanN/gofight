@@ -53,8 +53,8 @@ func (r rogue) IsDead() bool {
 	return r.hp <= 0
 }
 
-func (r rogue) IsStunned() bool {
-	return r.IsStunned()
+func (r rogue) GetStunned() bool {
+	return r.stunned
 }
 
 func (r rogue) backstab(f Fighter) {
@@ -73,5 +73,6 @@ func (r *rogue) heal() {
 		r.hp += healing
 		fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
 	}
-
 }
+
+func (r )
