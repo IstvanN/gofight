@@ -8,7 +8,7 @@ type rogue struct {
 	stunned                   bool
 }
 
-// CreateRogue is the constructor of the Rogue class
+// CreateRogue is the constructor of the Rogue struct
 func CreateRogue(name string) *rogue {
 	r := &rogue{
 		name:  name,
