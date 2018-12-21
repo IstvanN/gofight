@@ -24,6 +24,10 @@ func (r rogue) GetName() string {
 	return r.name
 }
 
+func (r rogue) GetHp() int {
+	return r.hp
+}
+
 func (r *rogue) Act(f Fighter) {
 	if !r.IsDead() {
 		if Rolld(2) == 1 {
