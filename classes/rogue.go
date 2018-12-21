@@ -25,10 +25,12 @@ func (r rogue) GetName() string {
 }
 
 func (r *rogue) Act(f Fighter) {
-	if Rolld(2) == 1 {
-		r.Backstab(f)
-	} else {
-		r.Heal()
+	if r.hp > 0 {
+		if Rolld(2) == 1 {
+			r.Backstab(f)
+		} else {
+			r.Heal()
+		}
 	}
 }
 
