@@ -30,13 +30,17 @@ func (r rogue) GetHP() int {
 }
 
 func (r *rogue) Act(f Fighter) {
-	if !r.IsDead() {
+	if !r.IsDead() && !r.stunned {
 		if Rolld(2) == 1 {
 			r.backstab(f)
 		} else {
 			r.heal()
 		}
 	}
+}
+
+func (r *rogue) GetStunned() {
+	r.stunned = true
 }
 
 func (r *rogue) Suffer(dmg int) {
@@ -53,14 +57,15 @@ func (r rogue) IsDead() bool {
 	return r.hp <= 0
 }
 
-func (r rogue) GetStunned() bool {
-	return r.stunned
-}
-
 func (r rogue) backstab(f Fighter) {
 	dmg := r.ap + Rolld(10)
 	fmt.Printf("%v is savagely backstabbing his opponent. ", r.name)
 	f.Suffer(dmg)
+}
+
+func (r rogue) dirt(f Fighter) {
+	fmt.Printf("%s throws dirt in the very eyes of %s, stunning him completely. Nasty move!", r.name, f.GetName())
+	f.GetStunned()
 }
 
 func (r *rogue) heal() {
@@ -74,5 +79,3 @@ func (r *rogue) heal() {
 		fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
 	}
 }
-
-func (r )
