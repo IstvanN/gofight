@@ -15,7 +15,7 @@ func main() {
 }
 
 func arena(f1 Fighter, f2 Fighter) {
-	fmt.Printf("Our fighters tonight are %s and %s!", f1.GetName(), f2.GetName())
+	fmt.Printf("Our fighters tonight are %s and %s!\n", f1.GetName(), f2.GetName())
 	for !eitherOneDead(f1, f2) {
 		if Rolld(2) == 1 {
 			f1.Act(f2)
@@ -24,6 +24,7 @@ func arena(f1 Fighter, f2 Fighter) {
 			f2.Act(f1)
 			f1.Act(f2)
 		}
+		status(f1, f2)
 	}
 	announceWinner(f1, f2)
 }
@@ -38,4 +39,8 @@ func announceWinner(f1 Fighter, f2 Fighter) {
 	} else {
 		fmt.Printf("Ladies and Gentlemen, the winner is %s!", strings.ToUpper(f1.GetName()))
 	}
+}
+
+func status(f1 Fighter, f2 Fighter) {
+	fmt.Printf("%s has %d hp left.\n%s has %d hp left.\n", f1.GetName(), f1.GetHP(), f2.GetName(), f2.GetHP())
 }
