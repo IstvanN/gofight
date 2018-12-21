@@ -31,15 +31,19 @@ func (r rogue) GetHP() int {
 
 func (r *rogue) Act(f Fighter) {
 	if !r.IsDead() && !r.stunned {
-		if Rolld(2) == 1 {
-			r.backstab(f)
-		} else {
-			r.heal()
+		roll := Rolld(3)
+		switch roll {
+		case 1: r.backstab(f)
+		case 2: r.heal()
+		case 3: r.dirt()
 		}
+	}
+	if r.stunned {
+		fmt.Printf("%s is stunned, thus not acting this round.", r.name)
 	}
 }
 
-func (r *rogue) GetStunned() {
+func (r *rogue) BeStunned() {
 	r.stunned = true
 }
 
@@ -65,7 +69,8 @@ func (r rogue) backstab(f Fighter) {
 
 func (r rogue) dirt(f Fighter) {
 	fmt.Printf("%s throws dirt in the very eyes of %s, stunning him completely. Nasty move!", r.name, f.GetName())
-	f.GetStunned()
+	f.BeStunned
+()
 }
 
 func (r *rogue) heal() {
