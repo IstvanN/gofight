@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	. "github.com/IstvanN/gofight/classes"
 )
@@ -24,8 +25,17 @@ func arena(f1 Fighter, f2 Fighter) {
 			f1.Act(f2)
 		}
 	}
+	announceWinner(f1, f2)
 }
 
 func eitherOneDead(f1 Fighter, f2 Fighter) bool {
 	return f1.IsDead() || f2.IsDead()
+}
+
+func announceWinner(f1 Fighter, f2 Fighter) {
+	if f1.IsDead() {
+		fmt.Printf("Ladies and Gentlemen, the winner is %s!", strings.ToUpper(f2.GetName()))
+	} else {
+		fmt.Printf("Ladies and Gentlemen, the winner is %s!", strings.ToUpper(f1.GetName()))
+	}
 }
