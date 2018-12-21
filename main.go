@@ -15,10 +15,17 @@ func main() {
 
 func arena(f1 Fighter, f2 Fighter) {
 	fmt.Printf("Our fighters tonight are %s and %s!", f1.GetName(), f2.GetName())
-	for {
+	for !eitherOneDead(f1, f2) {
 		if Rolld(2) == 1 {
 			f1.Act(f2)
 			f2.Act(f1)
+		} else {
+			f2.Act(f1)
+			f1.Act(f2)
 		}
 	}
+}
+
+func eitherOneDead(f1 Fighter, f2 Fighter) bool {
+	return f1.IsDead() || f2.IsDead()
 }
