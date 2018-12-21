@@ -12,7 +12,7 @@ type Fighter interface {
 	Act(Fighter)
 	Suffer(dmg int)
 	IsDead() bool
-	GetStunned() bool
+	GetStunned()
 }
 
 // Rolld function is the dice of the app
