@@ -38,11 +38,13 @@ func (r *rogue) Heal() {
 	healing := Rolld(10)
 
 	if r.hp+healing >= r.maxhp {
+		fmt.Printf("%v is popping up a healing potion, healing to max!\n", r.name)
 		r.hp = r.maxhp
 	} else {
 		r.hp += healing
+		fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
 	}
-	fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
+
 }
 
 func (r *rogue) Suffer(dmg int) {
@@ -51,6 +53,6 @@ func (r *rogue) Suffer(dmg int) {
 		fmt.Printf("Thanks to his armour, %v doesn't take any dmg!\n", r.name)
 	} else {
 		fmt.Printf("%v has taken %d damage.\n", r.name, actualDmg)
+		r.hp -= actualDmg
 	}
-	r.hp -= actualDmg
 }

@@ -9,7 +9,6 @@ import (
 type Fighter interface {
 	Act(Fighter)
 	Suffer(dmg int)
-	Heal()
 }
 
 // Rolld function is the dice of the app
