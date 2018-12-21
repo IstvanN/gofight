@@ -27,30 +27,11 @@ func (r rogue) GetName() string {
 func (r *rogue) Act(f Fighter) {
 	if !r.IsDead() {
 		if Rolld(2) == 1 {
-			r.Backstab(f)
+			r.backstab(f)
 		} else {
-			r.Heal()
+			r.heal()
 		}
 	}
-}
-
-func (r rogue) Backstab(f Fighter) {
-	dmg := r.ap + Rolld(10)
-	fmt.Printf("%v is savagely backstabbing his opponent. ", r.name)
-	f.Suffer(dmg)
-}
-
-func (r *rogue) Heal() {
-	healing := Rolld(10)
-
-	if r.hp+healing >= r.maxhp {
-		fmt.Printf("%v is popping up a healing potion, healing to max!\n", r.name)
-		r.hp = r.maxhp
-	} else {
-		r.hp += healing
-		fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
-	}
-
 }
 
 func (r *rogue) Suffer(dmg int) {
@@ -65,4 +46,23 @@ func (r *rogue) Suffer(dmg int) {
 
 func (r rogue) IsDead() bool {
 	return r.hp <= 0
+}
+
+func (r rogue) backstab(f Fighter) {
+	dmg := r.ap + Rolld(10)
+	fmt.Printf("%v is savagely backstabbing his opponent. ", r.name)
+	f.Suffer(dmg)
+}
+
+func (r *rogue) heal() {
+	healing := Rolld(10)
+
+	if r.hp+healing >= r.maxhp {
+		fmt.Printf("%v is popping up a healing potion, healing to max!\n", r.name)
+		r.hp = r.maxhp
+	} else {
+		r.hp += healing
+		fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
+	}
+
 }
