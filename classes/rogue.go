@@ -31,13 +31,13 @@ func (r rogue) GetHP() int {
 
 func (r *rogue) Act(f Fighter) {
 	if !r.IsDead() && !r.stunned {
-		roll := Rolld(3)
+		roll := Rolld(4)
 		switch roll {
-		case 1:
+		case 1, 2:
 			r.backstab(f)
-		case 2:
-			r.heal()
 		case 3:
+			r.heal()
+		case 4:
 			r.dirt(f)
 		}
 	}
@@ -58,9 +58,9 @@ func (r rogue) IsStunned() bool {
 func (r *rogue) Suffer(dmg int) {
 	actualDmg := dmg - r.armor
 	if actualDmg <= 0 {
-		fmt.Printf("Thanks to his armour, %v doesn't take any dmg!\n", r.name)
+		fmt.Printf("Thanks to his armour, %s doesn't take any dmg!\n", r.name)
 	} else {
-		fmt.Printf("%v has taken %d damage.\n", r.name, actualDmg)
+		fmt.Printf("%s has taken %d damage.\n", r.name, actualDmg)
 		r.hp -= actualDmg
 	}
 }
@@ -71,7 +71,10 @@ func (r rogue) IsDead() bool {
 
 func (r rogue) backstab(f Fighter) {
 	dmg := r.ap + Rolld(10)
-	fmt.Printf("%v is savagely backstabbing his opponent. ", r.name)
+	if f.IsStunned() {
+		dmg *= 3
+	}
+	fmt.Printf("%s is savagely backstabbing his opponent. ", r.name)
 	f.Suffer(dmg)
 }
 
@@ -84,10 +87,10 @@ func (r *rogue) heal() {
 	healing := Rolld(10)
 
 	if r.hp+healing >= r.maxhp {
-		fmt.Printf("%v is popping up a healing potion, healing to max!\n", r.name)
+		fmt.Printf("%s is popping up a healing potion, healing to max!\n", r.name)
 		r.hp = r.maxhp
 	} else {
 		r.hp += healing
-		fmt.Printf("%v is popping up a healing potion, healing %d health points.\n", r.name, healing)
+		fmt.Printf("%s is popping up a healing potion, healing %d health points.\n", r.name, healing)
 	}
 }
