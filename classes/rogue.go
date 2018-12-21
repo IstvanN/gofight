@@ -72,7 +72,7 @@ func (r rogue) IsDead() bool {
 func (r rogue) backstab(f Fighter) {
 	dmg := r.ap + Rolld(10)
 	if f.IsStunned() {
-		dmg *= 3
+		dmg *= 2
 	}
 	fmt.Printf("%s is savagely backstabbing his opponent. ", r.name)
 	f.Suffer(dmg)
