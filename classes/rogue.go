@@ -7,7 +7,8 @@ type rogue struct {
 	maxhp, hp, ap, armor, dex int
 }
 
-func createRogue(name string) *rogue {
+// CreateRogue is the constructor of the Rogue class
+func CreateRogue(name string) *rogue {
 	r := &rogue{
 		name:  name,
 		maxhp: 50 + Rolld(10),
