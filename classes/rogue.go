@@ -15,7 +15,7 @@ func CreateRogue(name string) *rogue {
 		maxhp: 50 + Rolld(10),
 		dex:   5 + Rolld(6),
 	}
-	r.ap += Rolld(10) + r.dex
+	r.ap += Rolld(20) + 2*r.dex
 	r.armor += Rolld(6) + r.dex
 	r.hp = r.maxhp
 	return r
@@ -49,6 +49,10 @@ func (r *rogue) Act(f Fighter) {
 
 func (r *rogue) BeStunned() {
 	r.stunned = true
+}
+
+func (r rogue) IsStunned() bool {
+	return r.stunned
 }
 
 func (r *rogue) Suffer(dmg int) {
