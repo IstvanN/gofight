@@ -15,7 +15,7 @@ func CreateRogue(name string) *rogue {
 		dex:   5 + Rolld(6),
 	}
 	r.ap += Rolld(10) + r.dex
-	r.armor += Rolld(10) + r.dex
+	r.armor += Rolld(6) + r.dex
 	r.hp = r.maxhp
 	return r
 }
@@ -28,7 +28,7 @@ func (r *rogue) Act(f Fighter) {
 	}
 }
 
-func (r *rogue) Backstab(f Fighter) {
+func (r rogue) Backstab(f Fighter) {
 	dmg := r.ap + Rolld(10)
 	fmt.Printf("%v is savagely backstabbing his opponent. ", r.name)
 	f.Suffer(dmg)
@@ -55,4 +55,8 @@ func (r *rogue) Suffer(dmg int) {
 		fmt.Printf("%v has taken %d damage.\n", r.name, actualDmg)
 		r.hp -= actualDmg
 	}
+}
+
+func (r rogue) IsDead() bool {
+	return r.hp <= 0
 }
