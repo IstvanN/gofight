@@ -43,6 +43,7 @@ func (r *rogue) Act(f Fighter) {
 	}
 	if !r.IsDead() && r.stunned {
 		fmt.Printf("%s is stunned, thus not acting this round.\n", r.name)
+		r.stunned = false
 	}
 }
 
@@ -71,7 +72,7 @@ func (r rogue) backstab(f Fighter) {
 }
 
 func (r rogue) dirt(f Fighter) {
-	fmt.Printf("%s throws dirt in the very eyes of %s, stunning him completely. Nasty move!", r.name, f.GetName())
+	fmt.Printf("%s throws dirt in the very eyes of %s, stunning him completely. Nasty move!\n", r.name, f.GetName())
 	f.BeStunned()
 }
 
