@@ -13,6 +13,7 @@ type Fighter interface {
 	Suffer(dmg int)
 	IsDead() bool
 	BeStunned()
+	IsStunned() bool
 }
 
 // Rolld function is the dice of the app
