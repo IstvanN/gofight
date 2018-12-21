@@ -24,7 +24,7 @@ func (r rogue) GetName() string {
 	return r.name
 }
 
-func (r rogue) GetHp() int {
+func (r rogue) GetHP() int {
 	return r.hp
 }
 
