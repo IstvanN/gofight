@@ -15,7 +15,7 @@ func CreateRogue(name string) *rogue {
 		maxhp: 50 + Rolld(10),
 		dex:   5 + Rolld(6),
 	}
-	r.ap += 10 + 2*r.dex
+	r.ap += 10 + r.dex
 	r.armor += Rolld(6) + r.dex
 	r.hp = r.maxhp
 	return r
