@@ -5,6 +5,7 @@ import "fmt"
 type rogue struct {
 	name                      string
 	maxhp, hp, ap, armor, dex int
+	stunned                   bool
 }
 
 // CreateRogue is the constructor of the Rogue class
@@ -50,6 +51,10 @@ func (r *rogue) Suffer(dmg int) {
 
 func (r rogue) IsDead() bool {
 	return r.hp <= 0
+}
+
+func (r rogue) IsStunned() bool {
+	return r.IsStunned()
 }
 
 func (r rogue) backstab(f Fighter) {
