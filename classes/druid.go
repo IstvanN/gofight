@@ -76,7 +76,7 @@ func (d druid) moonbean(f Fighter) {
 }
 
 func (d druid) thorns(f Fighter) {
-	fmt.Printf("%s grabs his enemy with thorns, completely stunning him.", d.name)
+	fmt.Printf("%s grabs his enemy with thorns, completely stunning him.\n", d.name)
 	f.BeStunned()
 }
 
