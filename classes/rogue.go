@@ -33,13 +33,16 @@ func (r *rogue) Act(f Fighter) {
 	if !r.IsDead() && !r.stunned {
 		roll := Rolld(3)
 		switch roll {
-		case 1: r.backstab(f)
-		case 2: r.heal()
-		case 3: r.dirt()
+		case 1:
+			r.backstab(f)
+		case 2:
+			r.heal()
+		case 3:
+			r.dirt(f)
 		}
 	}
-	if r.stunned {
-		fmt.Printf("%s is stunned, thus not acting this round.", r.name)
+	if !r.IsDead() && r.stunned {
+		fmt.Printf("%s is stunned, thus not acting this round.\n", r.name)
 	}
 }
 
@@ -69,8 +72,7 @@ func (r rogue) backstab(f Fighter) {
 
 func (r rogue) dirt(f Fighter) {
 	fmt.Printf("%s throws dirt in the very eyes of %s, stunning him completely. Nasty move!", r.name, f.GetName())
-	f.BeStunned
-()
+	f.BeStunned()
 }
 
 func (r *rogue) heal() {
