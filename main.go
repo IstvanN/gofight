@@ -10,7 +10,7 @@ import (
 func main() {
 	fmt.Println("Welcome to GoFight!")
 	var f1 Fighter = CreateRogue("Wolfgraff")
-	var f2 Fighter = CreateRogue("Grunt")
+	var f2 Fighter = CreateDruid("Cenarius")
 	arena(f1, f2)
 }
 
